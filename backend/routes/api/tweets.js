@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
+/* GET tweets listing. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  // console.log("hi")
+  // res.send('respond with a resource');
+  res.json({
+    message: "GET /api/tweets"
+  })
+  
 });
 
 module.exports = router;
