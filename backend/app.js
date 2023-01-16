@@ -4,11 +4,18 @@ const express = require('express');
 const debug = require('debug');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
+
+
 // importing isProduction and CORS middleware from keys.js
 const cors = require('cors');
 // importing csurf node module to neable CSRF proctection
 const csurf = require('csurf');
 const { isProduction } = require('./config/keys');
+
+require('./models/User');
+require('./config/passport')
+const passport = require('passport')
 
 // const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users'); // update the import file path
@@ -22,6 +29,8 @@ app.use(express.json()); // parse JSON request body
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize());
 
 // ADD THIS SECURITY MIDDLEWARE
 // Security Middleware
